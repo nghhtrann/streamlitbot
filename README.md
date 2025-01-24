@@ -13,7 +13,7 @@ Chat bot streamlit - MBDIA Classe 1
 
 2. Télécharger le zip depuis le répository
 
-![alt text](images/telecharger_zip.png)
+![alt text](telecharger_zip.png)
 
 3. Extraire le zip pour obtenir un dossier
 
@@ -66,7 +66,7 @@ streamlit run chatbot.py
 2. Une fois que vous avez créé votre compte OpenAI et que vous vous êtes connecté à votre compte, suivre ce lien https://platform.openai.com/settings/organization/api-keys
 
 3. Cliquer sur **"Create new secret key"** et copier cette clé API nouvellement générée.
-![alt text](images/api_key.png)
+![alt text](api_key.png)
 
 4. Créer le dossier **.streamlit** dans le dossier **streamlitbot-main**
 
