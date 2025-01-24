@@ -3,6 +3,17 @@ from openai import OpenAI
 
 st.title("ChatGPT-like clone")
 
+# Select box
+option = st.selectbox(
+    "Quel type de modèle de ChatGPT?",
+    ("gpt-3.5-turbo", "gpt-3.5-turbo-instruct", "gpt-3.5-turbo-1106", "gpt-3.5-turbo-0125"),
+    index=None,
+    placeholder="Choisir un modèle...",
+)
+
+# Slider max_tokens
+max_tokens = st.slider("Variable max_tokens", 0, 500, 200)
+
 # Set OpenAI API key from Streamlit secrets
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
@@ -27,6 +38,7 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("user"):
         st.markdown(prompt)
 
+
  # Display assistant response in chat message container
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
@@ -36,17 +48,10 @@ if prompt := st.chat_input("What is up?"):
                 for m in st.session_state.messages
             ],
             stream=True,
-            max_tokens = 200,
+            max_tokens = max_tokens,
         )
         response = st.write_stream(stream)
     st.session_state.messages.append({"role": "assistant", "content": response})
 
-# Select box
-import streamlit as st
 
-option = st.selectbox(
-    "Quel type de modèle de ChatGPT?",
-    ("gpt-3.5-turbo", "gpt-3.5-turbo-instruct", "gpt-3.5-turbo-1106", "gpt-3.5-turbo-0125"),
-    index=None,
-    placeholder="Choisir un modèle...",
-)
+
